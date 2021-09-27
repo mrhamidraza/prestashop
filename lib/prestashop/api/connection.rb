@@ -158,7 +158,7 @@ module Prestashop
         raise ArgumentError, "id: #{id} must be integer" unless id.to_i.kind_of?(Integer)
 
         request_path = path(resource, id)
-        response = connection.put request_path, payload
+        response = connection.put request_path, payload.gsub('&','&amp;')
         if response.success?
           response.body.parse
         else
